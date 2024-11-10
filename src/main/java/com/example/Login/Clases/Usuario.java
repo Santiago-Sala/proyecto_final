@@ -9,7 +9,7 @@ import com.example.Login.Enums.Rol;
 public class Usuario implements Comparable<Usuario>{
 
     //Atributos
-    private Sting username;
+    private String username;
     private String passwordHash;
     private Rol tipoIngreso;
 
@@ -17,30 +17,31 @@ public class Usuario implements Comparable<Usuario>{
     public Usuario(String username, String password, Rol tipoIngreso){
         this.username = username;
         this.passwordHash = hashPassword(password);
-        this.TipoIngreso = tipoIngreso;
+        this.tipoIngreso = tipoIngreso;
     }
 
     //Constructor sin parametros
-    public Ususario(){
+    public Usuario(){
         this.username = username;
         this.passwordHash = hashPassword(passwordHash);
-        this.TipoIngreso = tipoIngreso;
+        this.tipoIngreso = tipoIngreso;
     }
 
     //Metodo para verificar la contraseña ingresada.
     public boolean verificarPassword(String passwordIngresada){
-        return(passwordIngresada.equals(hashPassword));
+
+        return(passwordIngresada.equals(passwordHash));
     }
 
     //GETTERS
-    public Sting getUsername() {return username;}
-    public String passwordHash() {return password;}
-    public Rol getTipoIngreso() {return TipoIngreso;}
+    public String getUsername() {return username;}
+    public String passwordHash() {return passwordHash;}
+    public Rol getTipoIngreso() {return tipoIngreso;}
 
     //SETTERS
-    public void setUsername(Sting username) {this.username = username;}
-    public void setPasswordHash(String password) {this.password = password;}
-    public void setTipoIngreso(Rol tipoIngreso) {TipoIngreso = tipoIngreso;}
+    public void setUsername(String username) {this.username = username;}
+    public void setPasswordHash(String password) {this.passwordHash = password;}
+    public void setTipoIngreso(Rol tipoIngreso) {tipoIngreso = tipoIngreso;}
 
     // Método para hashear la contraseña. Aquí se convertirá la contraseña en un arreglo de Strings Hasheado.
     //Para que cuando se abra el archivo json de texto, no se vea la contraseña real.
