@@ -6,25 +6,25 @@ import java.util.Objects;
 
 import com.example.Login.Enums.Rol;
 
-public class Usuario {
+public class Usuario implements Comparable<Usuario>{
 
     //Atributos
     private Sting username;
     private String passwordHash;
-    private Rol TipoIngreso;
+    private Rol tipoIngreso;
 
     //Constructor con parámetros
-    public Usuario(String username, String password, Rol TipoIngreso){
+    public Usuario(String username, String password, Rol tipoIngreso){
         this.username = username;
         this.passwordHash = hashPassword(password);
-        this.TipoIngreso = TipoIngreso;
+        this.TipoIngreso = tipoIngreso;
     }
 
     //Constructor sin parametros
     public Ususario(){
         this.username = username;
         this.passwordHash = hashPassword(passwordHash);
-        this.TipoIngreso = TipoIngreso;
+        this.TipoIngreso = tipoIngreso;
     }
 
     //Metodo para verificar la contraseña ingresada.
@@ -34,7 +34,7 @@ public class Usuario {
 
     //GETTERS
     public Sting getUsername() {return username;}
-    public String getPassword() {return password;}
+    public String passwordHash() {return password;}
     public Rol getTipoIngreso() {return TipoIngreso;}
 
     //SETTERS
@@ -88,5 +88,8 @@ public class Usuario {
         return Objects.hash(username, tipoIngreso);
     
     }
-
+    
+    public int compareTo(Usuario o) {
+        return this.username.compareTo(o.username);
+    };
 }
