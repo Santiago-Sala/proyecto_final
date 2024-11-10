@@ -33,17 +33,8 @@ public class Usuario implements Comparable<Usuario>{
         return(passwordIngresada.equals(passwordHash));
     }
 
-    //GETTERS
-    public String getUsername() {return username;}
-    public String passwordHash() {return passwordHash;}
-    public Rol getTipoIngreso() {return tipoIngreso;}
 
-    //SETTERS
-    public void setUsername(String username) {this.username = username;}
-    public void setPasswordHash(String password) {this.passwordHash = password;}
-    public void setTipoIngreso(Rol tipoIngreso) {tipoIngreso = tipoIngreso;}
-
-    // Método para hashear la contraseña. Aquí se convertirá la contraseña en un arreglo de Strings Hasheado.
+    // Metodo para hashear la contraseña. Aquí se convertirá la contraseña en un arreglo de Strings Hasheado.
     //Para que cuando se abra el archivo json de texto, no se vea la contraseña real.
         private String hashPassword(String password) {
         try {
@@ -73,7 +64,17 @@ public class Usuario implements Comparable<Usuario>{
         }
     }
 
-    // Método equals para username y tipoIngreso
+    //GETTERS
+    public String getUsername() {return username;}
+    public String passwordHash() {return passwordHash;}
+    public Rol getTipoIngreso() {return tipoIngreso;}
+
+    //SETTERS
+    //Los setters no van a tener Username ya que eso no se prodá modificar.
+    public void setPasswordHash(String password) {this.passwordHash = password;}
+    public void setTipoIngreso(Rol tipoIngreso) {tipoIngreso = tipoIngreso;}
+
+    // Metodo equals para username y tipoIngreso
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -83,7 +84,7 @@ public class Usuario implements Comparable<Usuario>{
                tipoIngreso == usuario.tipoIngreso;
     }
 
-    // Método hashCode para username y tipoIngreso
+    // Metodo hashCode para username y tipoIngreso
     @Override
     public int hashCode() {
         return Objects.hash(username, tipoIngreso);
