@@ -8,22 +8,26 @@ import com.example.Login.Enums.Rol;
 
 public class Usuario {
 
+    //Atributos
     private Sting username;
     private String passwordHash;
     private Rol TipoIngreso;
 
+    //Constructor con parámetros
     public Usuario(String username, String password, Rol TipoIngreso){
         this.username = username;
         this.passwordHash = hashPassword(password);
         this.TipoIngreso = TipoIngreso;
     }
 
+    //Constructor sin parametros
     public Ususario(){
         this.username = username;
         this.passwordHash = hashPassword(passwordHash);
         this.TipoIngreso = TipoIngreso;
     }
 
+    //Metodo para verificar la contraseña ingresada.
     public boolean verificarPassword(String passwordIngresada){
         return(passwordIngresada.equals(hashPassword));
     }
@@ -38,8 +42,9 @@ public class Usuario {
     public void setPasswordHash(String password) {this.password = password;}
     public void setTipoIngreso(Rol tipoIngreso) {TipoIngreso = tipoIngreso;}
 
-    // Método para hashear la contraseña
-    private String hashPassword(String password) {
+    // Método para hashear la contraseña. Aquí se convertirá la contraseña en un arreglo de Strings Hasheado.
+    //Para que cuando se abra el archivo json de texto, no se vea la contraseña real.
+        private String hashPassword(String password) {
         try {
             // Crea una instancia de MessageDigest con el algoritmo SHA-256
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
