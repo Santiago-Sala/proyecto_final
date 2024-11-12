@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 import com.example.Excepciones.*;
 
-public class Validador {
+
+public class Validaciones{
+
     public static void validarNombre(String nombre) throws NombreInvalidoException {
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new NombreInvalidoException("El nombre no puede estar vacío.");
