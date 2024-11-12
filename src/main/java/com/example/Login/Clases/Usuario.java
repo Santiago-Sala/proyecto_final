@@ -12,24 +12,30 @@ public class Usuario implements Comparable<Usuario>{
     private String username;
     private String passwordHash;
     private Rol tipoIngreso;
+    private String nombreApellido;
+    private int dni;
+    private char sexo;
 
     //Constructor con parámetros
-    public Usuario(String username, String password, Rol tipoIngreso){
+
+    public Usuario(String username, String passwordHash, Rol tipoIngreso, String nombreApellido, int dni, char sexo) {
         this.username = username;
-        this.passwordHash = hashPassword(password);
+        this.passwordHash = passwordHash;
         this.tipoIngreso = tipoIngreso;
+        this.nombreApellido = nombreApellido;
+        this.dni = dni;
+        this.sexo = sexo;
     }
 
+
     //Constructor sin parametros
-    public Usuario(){
-        this.username = username;
-        this.passwordHash = hashPassword(passwordHash);
-        this.tipoIngreso = tipoIngreso;
+    public Usuario() {
     }
 
     //Metodo para verificar la contraseña ingresada.
     public boolean verificarPassword(String passwordIngresada){
 
+        hashPassword(passwordIngresada);
         return(passwordIngresada.equals(passwordHash));
     }
 
@@ -66,13 +72,19 @@ public class Usuario implements Comparable<Usuario>{
 
     //GETTERS
     public String getUsername() {return username;}
-    public String passwordHash() {return passwordHash;}
+    public String getPasswordHash() {return passwordHash;}
     public Rol getTipoIngreso() {return tipoIngreso;}
+    public String getNombreApellido() {return nombreApellido;}
+    public int getDni() {return dni;}
+    public char getSexo() {return sexo;}
 
     //SETTERS
     //Los setters no van a tener Username ya que eso no se prodá modificar.
-    public void setPasswordHash(String password) {this.passwordHash = password;}
+    public void setPasswordHash(String password) {this.passwordHash = hashPassword(password);}
     public void setTipoIngreso(Rol tipoIngreso) {tipoIngreso = tipoIngreso;}
+    public void setNombreApellido(String nombreApellido) {this.nombreApellido = nombreApellido;}
+    public void setSexo(char sexo) {this.sexo = sexo;}
+
 
     // Metodo equals para username y tipoIngreso
     @Override
@@ -80,16 +92,16 @@ public class Usuario implements Comparable<Usuario>{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return Objects.equals(username, usuario.username) &&
-               tipoIngreso == usuario.tipoIngreso;
+        return dni == usuario.dni && sexo == usuario.sexo && Objects.equals(username, usuario.username) && Objects.equals(passwordHash, usuario.passwordHash) && tipoIngreso == usuario.tipoIngreso && Objects.equals(nombreApellido, usuario.nombreApellido);
     }
+
 
     // Metodo hashCode para username y tipoIngreso
     @Override
     public int hashCode() {
-        return Objects.hash(username, tipoIngreso);
-    
+        return Objects.hash(username, passwordHash, tipoIngreso, nombreApellido, dni, sexo);
     }
+
     
     public int compareTo(Usuario o) {
         return this.username.compareTo(o.username);
