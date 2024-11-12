@@ -3,6 +3,7 @@ package com.example.Utils;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.regex.Pattern;
+import com.example.Excepciones.*;
 
 public class Validador {
     public static void validarNombre(String nombre) throws NombreInvalidoException {
